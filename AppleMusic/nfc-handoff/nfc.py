@@ -4,16 +4,10 @@ import os
 if os.path.exists("dry-run"):
 
     idformat = "ClientID:"
-    idline = ""
-
     secretformat = "ClientSecret:"
-    secretline = ""
-
     usernameformat = "Username:"
-    usernameline = ""
 
-    deviceformat = "Device:"
-    deviceline = ""
+    memoryline = "";
 
     scopes = "user-read-currently-playing user-modify-playback-state user-read-playback-state streaming app-remote-control"
     url = "http://localhost/"
@@ -21,17 +15,14 @@ if os.path.exists("dry-run"):
     with open('config.txt', 'r') as file:
         for line in file:
             if idformat in line:
-                    idline = line
-                    id = idline[11:][:-2]
+                memoryline = line
+                id = memoryline.rstrip(os.linesep)[11:][:-1]
             elif secretformat in line:
-                    secretline = line
-                    secret = secretline[15:][:-2]
+                memoryline = line
+                secret = memoryline.rstrip(os.linesep)[15:][:-1]
             elif usernameformat in line:
-                    usernameline = line
-                    username = usernameline[11:][:-1]
-            elif deviceformat in line:
-                    deviceline = line
-                    device = deviceline[9:][:-1]
+                memoryline = line
+                username = memoryline.rstrip(os.linesep)[11:][:-1]
 
     token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
 
@@ -44,68 +35,56 @@ else:
     os.remove(path[:-6] + "log.txt")
 
     timecodeformat = '"ssnc" "prgr":'
-    timecodeline = ""
-
     songnameformat = "Title:"
-    songnameline = ""
-
+    artistformat = "Artist:"
     idformat = "ClientID:"
-    idline = ""
-
     secretformat = "ClientSecret:"
-    secretline = ""
-
     usernameformat = "Username:"
-    usernameline = ""
-
     deviceformat = "Device:"
-    deviceline = ""
-
     countryformat = "Country:"
-    countryline = ""
+
+    memoryline = "";
+    timecodeline = "";
 
     scopes = "user-read-currently-playing user-modify-playback-state user-read-playback-state streaming app-remote-control"
     url = "http://localhost/"
 
     i = 3
-    q = 3
 
     with open(path[:-6] + 'config.txt', 'r') as file:
         for line in file:
             if idformat in line:
-                    idline = line
-                    id = idline[11:][:-2]
+                memoryline = line
+                id = memoryline.rstrip(os.linesep)[11:][:-1]
             elif secretformat in line:
-                    secretline = line
-                    secret = secretline[15:][:-2]
+                memoryline = line
+                secret = memoryline.rstrip(os.linesep)[15:][:-1]
             elif usernameformat in line:
-                    usernameline = line
-                    username = usernameline[11:][:-1]
+                memoryline = line
+                username = memoryline.rstrip(os.linesep)[11:][:-1]
             elif deviceformat in line:
-                    deviceline = line
-                    device = deviceline[9:][:-2]
+                memoryline = line
+                device = memoryline.rstrip(os.linesep)[9:][:-1]
             elif countryformat in line:
-                    countryline = line
-                    country = countryline[10:][:-2]
+                memoryline = line
+                country = memoryline.rstrip(os.linesep)[10:][:-1]
 
     with open(path[:-6] + 'airplay.txt', 'r') as file:
         for line in file:
             if timecodeformat in line:
                 if i > 1:
-                    i = i-1
+                    i = i - 1
                 else:
                     timecodeline = line
-                    break
+            elif songnameformat in line:
+                memoryline = line
+                songname = memoryline.rstrip(os.linesep)[8:][:-2]
+            elif artistformat in line:
+                memoryline = line
+                artist = memoryline.rstrip(os.linesep)[9:][:-2]
 
     with open(path[:-6] + 'airplay2.txt', 'w') as file:
         file.write(timecodeline)
-
-    with open(path[:-6] + 'airplay.txt', 'r') as file:
-        for line in file:
-            if songnameformat in line:
-                    songnameline = line
-                    songname = songnameline[8:][:-3]
-                    break
 
     timecodeline2 = timecodeline[16:]
     timecodeline3 = timecodeline2[:-3]
@@ -118,24 +97,30 @@ else:
     curr = round((mid - starter) / 44100)
     dur = round((end - starter) / 44100)
 
-    token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
-
-    spotify = spotipy.Spotify(auth=token)
-
-    songlist = spotify.search(songname, 1, 0, "track", country)
-    song = songlist['tracks']['items'][0]['uri']
-
-    spotify.start_playback(device, None, [song], None)
-    spotify.seek_track(int(curr) * 1000, device)
+    if "feat." in songname:
+        songname = songname.split("(")[0][:-1]
 
     with open(path[:-6] + 'log.txt', 'w') as file:
         file.write("Songname: " + songname + "\n"
+                +   "Artist: " + artist + "\n"
+                +   "Search for: " + songname + " " + artist + "\n"
                 +  "Timecode 1: " + str(starter) + "\n"
                 +  "Timecode 2: " + str(mid) + "\n"
                 +  "Timecode 3: " + str(end) + "\n"
                 +  "Timecode: " + timecodeline2 + "\n"
                 +  "Curr: " + str(curr) + "\n"
                 +  "Dur: " + str(dur))
+
+    token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
+
+    spotify = spotipy.Spotify(auth=token)
+
+    songlist = spotify.search(songname + " " + artist, 1, 0, "track", country)
+
+    song = songlist['tracks']['items'][0]['uri']
+
+    spotify.start_playback(device, None, [song], None)
+    spotify.seek_track(int(curr) * 1000, device)
 
     os.remove(path[:-6] + "airplay.txt")
     os.remove(path[:-6] + "airplay2.txt")
