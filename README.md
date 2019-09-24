@@ -1,4 +1,4 @@
-﻿# NFC-Handoff - Hand your Music to an Amazon Echo
+﻿# NFC-Music-Handoff - Hand your Music to an Amazon Echo
 
 ## Showcase
 https://photos.app.goo.gl/g2zqJhHCFPAALcW69
