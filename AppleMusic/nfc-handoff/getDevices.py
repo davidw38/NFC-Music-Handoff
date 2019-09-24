@@ -4,13 +4,10 @@ import os
 path = os.path.realpath(__file__)
 
 idformat = "ClientID:"
-idline = ""
-
 secretformat = "ClientSecret:"
-secretline = ""
-
 usernameformat = "Username:"
-usernameline = ""
+
+memoryline = "";
 
 scopes = "user-read-currently-playing user-modify-playback-state user-read-playback-state streaming app-remote-control"
 url = "http://localhost/"
@@ -18,14 +15,14 @@ url = "http://localhost/"
 with open('config.txt', 'r') as file:
     for line in file:
         if idformat in line:
-                idline = line
-                id = idline[11:][:-2]
+            memoryline = line
+            id = memoryline.rstrip(os.linesep)[11:][:-1]
         elif secretformat in line:
-                secretline = line
-                secret = secretline[15:][:-2]
+            memoryline = line
+            secret = memoryline.rstrip(os.linesep)[15:][:-1]
         elif usernameformat in line:
-                usernameline = line
-                username = usernameline[11:][:-1]
+            memoryline = line
+            username = memoryline.rstrip(os.linesep)[11:][:-1]
 
 token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
 
