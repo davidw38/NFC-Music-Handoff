@@ -44,8 +44,19 @@ After the installation is completed we have to edit the configuration of shairpo
 
     
     /etc/shairport-sync.conf
+    
+    metadata = {
+        enabled = "yes"; // set this to yes to get Shairport Sync to solicit metadata from the source and to pass it on via a pipe
+        include_cover_art = "yes"; // set to "yes" to get Shairport Sync to solicit cover art from the source and pass it via the pipe. You must also set "enabled" to "yes".
+        pipe_name = "/tmp/shairport-sync-metadata";
+	//      pipe_timeout = 5000; // wait for this number of milliseconds for a blocked pipe to unblock before giving up
+	//      socket_address = "226.0.0.1"; // if set to a host name or IP address, UDP packets containing metadata will be sent to this address. May be a multicast address. "soc$
+	//      socket_port = 5555; // if socket_address is set, the port to send UDP packets to
+	//      socket_msglength = 65000; // the maximum packet size for any UDP metadata. This will be clipped to be between 500 or 65000. The default is 500.
+	};
 
-![config](https://lh3.googleusercontent.com/TKVqwcGrpB0meOZqxsfB25ckae9gVaQ1wPEoFddFDv86TYDqZ2M50UQzBrcZnG3Lx8h3hyDQeUltvJxa_3gXRXhjdZj1mMf8U6C1R9ZUZQpAvsTsFlU-lu1DxxstJpkDz6aXMykjbpDbL_GpNxVKCyJZLt9G3SXy3kbOiXwlHB3hxrXgrBPz-Uk4TRIMEJEK0C0rhw_xdp3BH8cQ7Wcv8wbSLBE5udlMSsfyFIYY08yVyKpNiGLXAAhvPR15Oa9isxtBxvbBvjKDIIxrpwDVdD64Leg3MmsgEhpVoIXyUtdRtaiFNsdCTWKxMD_5XzZVU-z016G03TDo0Ik89elc3gvC3JDAGrH6BQGsTFiRzi9aq_jYzOQL6rAD2u0VYr5TkpsHJOwuTRqrBBaWQ9oVTyJyrse3Tflohysb67yXc6BMzSdPAxCgDmvdKYXmxWBUxTx4ZlMu82Quv73NWQjGjhYTsT7DmnFi0U95ZFnhDYyf5jbT9iLCVO96M3tai6nTeh2Ntuvn8yoADepbs1iSgsnlCTtERvqBW-h0PmM5CzEJuogYxI5M-sm4lKINPn5erhl7e4ZTQcQa_5KMdnWmb66ys3j5csYlyHEoAfyg3Jv5Z0D4ziy4ulS_7se29R7PELEROkfYSgGCYNBvQqevsv91HKHKjPx7vNSKKd8FTydC0TrqosT2fSsfpS1stx8zGAU3UcReQXdsKOwIgzKqNRjY5YtRWqohpw9vW8kizdei8Yw=s250-k-no)
+
+
 Just copy that part of the config
 
 **II. After that we install the [shairport-sync-metadata-reader](https://github.com/mikebrady/shairport-sync-metadata-reader) and start the AirPlay Server:**
