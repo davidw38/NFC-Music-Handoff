@@ -1,5 +1,5 @@
 #!/bin/bash
 touch log.txt
-screen -X quit
+killall screen
 python nfc.py
 
