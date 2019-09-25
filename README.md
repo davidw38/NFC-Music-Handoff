@@ -67,8 +67,8 @@ Just copy that part of the config
     # ./configure
     # make
     # sudo make install
-    # systemctl enable shairport-sync
-    # systemctl start shairport-sync
+    # sudo systemctl enable shairport-sync
+    # sudo systemctl start shairport-sync
 **III. Now we install Python and the required libaries:**
 
     # sudo apt install python python-pip
