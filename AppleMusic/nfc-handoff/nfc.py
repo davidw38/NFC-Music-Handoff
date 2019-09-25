@@ -1,4 +1,5 @@
 import spotipy.util
+import traceback
 import os
 
 if os.path.exists("dry-run"):
@@ -33,6 +34,9 @@ if os.path.exists("dry-run"):
 else:
     path = os.path.realpath(__file__)
     os.remove(path[:-6] + "log.txt")
+
+    if(os.path.exists(path[:-6] + "error.txt")):
+        os.remove(path[:-6] + "error.txt")
 
     timecodeformat = '"ssnc" "prgr":'
     songnameformat = "Title:"
@@ -90,15 +94,28 @@ else:
     timecodeline3 = timecodeline2[:-3]
 
     timecodes = timecodeline3.split("/")
-    starter = int(timecodes[0])
-    mid = int(timecodes[1])
-    end = int(timecodes[2])
+
+    try:
+        starter = int(timecodes[0])
+        mid = int(timecodes[1])
+        end = int(timecodes[2])
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("There is a problem dealing with the timecodes! Try restarting shairport!")
 
     curr = round((mid - starter) / 44100)
     dur = round((end - starter) / 44100)
 
     if "feat." in songname:
         songname = songname.split("(")[0][:-1]
+
+    if "," in artist:
+        artist = artist.split(",")[0]
+
+    if "&" in artist:
+        artist = artist.split("&")[0][:-1]
 
     with open(path[:-6] + 'log.txt', 'w') as file:
         file.write("Songname: " + songname + "\n"
@@ -113,11 +130,23 @@ else:
 
     token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
 
-    spotify = spotipy.Spotify(auth=token)
+    try:
+        spotify = spotipy.Spotify(auth=token)
+        songlist = spotify.search(songname + " " + artist, 1, 0, "track", country)
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("There is a problem dealing with the Spotify-API! Check config.txt!")
 
-    songlist = spotify.search(songname + " " + artist, 1, 0, "track", country)
 
-    song = songlist['tracks']['items'][0]['uri']
+    try:
+        song = songlist['tracks']['items'][0]['uri']
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("No Songs have been found! Check log.txt!")
 
     spotify.start_playback(device, None, [song], None)
     spotify.seek_track(int(curr) * 1000, device)
