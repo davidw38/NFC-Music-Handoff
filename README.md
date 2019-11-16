@@ -23,8 +23,8 @@ I will share multiple versions of this script depending on which Streaming-Provi
 
 **As a result there are two different use cases:**
 
- - **Method 1**: You want to use Spotify on your iOS device and transfer that music to your Echo which is also running Spotify
- - **Method 2**: You want to use Apple Music on your iOS device e and transfer that music to your Echo which is running Spotify
+ - [**Method 1**](https://github.com/davidw38/NFC-Music-Handoff#method-1-spotify--amazon-echo): You want to use Spotify on your iOS device and transfer that music to your Echo which is also running Spotify
+ - [**Method 2**](https://github.com/davidw38/NFC-Music-Handoff#method-2-apple-music--amazon-echo): You want to use Apple Music on your iOS device e and transfer that music to your Echo which is running Spotify
 
 
 ## Method 1: Spotify → Amazon Echo
