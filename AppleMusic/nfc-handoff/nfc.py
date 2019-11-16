@@ -148,8 +148,22 @@ else:
             file.write(exe)
         raise Exception("No Songs have been found! Check log.txt!")
 
-    spotify.start_playback(device, None, [song], None)
-    spotify.seek_track(int(curr) * 1000, device)
+    try:
+        spotify.start_playback(device, None, [song], None)
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("The device has not been found! Check log.txt!")
+
+    try:
+        spotify.seek_track(int(curr) * 1000, device)
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("The was a problem with the timecodes of the song! Check log.txt!")
+
 
     os.remove(path[:-6] + "airplay.txt")
     os.remove(path[:-6] + "airplay2.txt")
