@@ -17,7 +17,7 @@ I will share multiple versions of this script depending on which Streaming-Provi
  - An Amazon Echo that supports the streaming of music
  - An Spotify Premium Account that is connected to that Echo
  - An Apple Device with the latest [Shortcuts App](https://apps.apple.com/de/app/shortcuts/id915249334?l=en) installed
- - Any kind of Linux based system that can be accesed via SSH  e.g an Raspberry Pi
+ - Any kind of Linux based system that can be accesed via SSH  e.g. an Raspberry Pi
  
  Unfortunately Apple Music is currently not supported for the use on our Amazon Echo because of its missing API. Nevertheless we can use it on our iOS device to synchronize our music from Apple Music with our Amazon Echo. But you need to know that in this case you would need an Apple Music subscription for your iOS device AND a subscription to Spotify Premium for your Echo. If you just want to synchronize the Spotify Music of your iOS device with your Echo via NFC you ONLY need to own Spotify Premium.
 
@@ -90,9 +90,18 @@ Just copy that part of the config
 
 **Search for SSH and add the shown action**
 
+![enter image description here](https://lh3.googleusercontent.com/CrfiFBQa38fu4jiRDCzBy0oxsWkyrcx0GbZA7UL0zh-dmzfiVT6E7DpNj6tnowur0IzLw99vjGzBZl8GtTJeiZ6P4lepN42TzrF0Zm95JBGNUFD_6T4Af1deQWWJTUk3n9r7r373keN6Cv73vfg7URg827Y3jpcEinww0isQg5uoEYzmwtFPLQ4OJsJCeFVVloLNyXlSexsirsrgKKCQzJYQzHDH7kdr2uWSMuc-fLKcShhve95GAwagxfv27no7gwHuuUuIhtV-RJfYbAkhuh-kO4A6kNijhWPOKjczVf2-kAimOu-wT_lehKkz9IBlovlJZC1NnApo6PSdunAA2cM4fCx3Td3aIsimZMcZWji-HbC4oCzPltW_-78kvmEQ6kHKGVl5htdSK-B1Qi47dpqW0F7EQXDovTtcibRZYWbufxkDAlQfXoIgzktSTaQ4mU51Mq7oI8w689q_FR3f_5wf3LqrNTLfi7IvTwM97xWhEjg-_sC3D4VvK1w8HSR6lhImuR9uoYAZRNTnww7YUAT1y6FUsu6Iv2LEJtt8qlWt9IXZEVkkqsNZSI4smvLOlCknWIPZFdzFJz-sC24fVXO_2DR9ngMt5cftFE_EdUiK4rAra5FWrJDCMRaBthE9-eytiBbv2DT-zCinO3T4GBZKInPAkoNA2ZCuGSXGc2uovscF8hbBijegly7iba39e3Z0Tr1L9xSoI2sN649IHbLPs7SEdhGL6eJJZigCbTvu7YQ=w518-h695-no)
+
+
+**1. Enter the IP, the username and the password for your user account choose nothing for "Input".
+2. Enter the command you can see in the picture and adjust the path according to the location you have chosen for the "nfc-handoff" folder at the beginning - DO NOT change the file clearCache.py, only adjust the folder location!**
+
+**Example: You installed the folder under /opt/nfc-handoff/ so you have to change the path to /opt/nfc-handoff/clearCache.py**
+
+
 ![enter image description here](https://lh3.googleusercontent.com/pf6Ba4nCgLsWyR0st5a-LYHLSFzP5TMgZfBe-Z6EP0vl5L-i-5zMCiCYCfAVkH3tRLQPSdR5hcSR2JFMgZ0p3-GH_wFY6uG5jBu9ZadrFHWHhHRIlS9kdxeaH6D6iTaWHhsnogdKelh85r_j4P6f_7MetK1saesKAzuGSQXTvK0PGGhh_jdKL0Ss8NBBhXxWUIKgQojxgJT-ScxO_qz44Sm0jzO8YGLOAGAM18WynBz0pBGj6zhFXQ0tsWL9pRkNTKasdyN6D_tjQ8R8TcpLF_6T3eK3bBpUZ14HgLa8MaBs48nE1ed7A8OivJMfbt3HzrfSNuv2esx3wCtGAWMk2E6nBBn-H_0bfmw6f9EJJlMiQFhUFHBhjHizb2LsFBVpMKpIPKmG5bxYMeen0ZB6Fjc_KTpeY8FiIyBBkjb2kOpMb_G7yhzJqaDIUYCeBqvIJs2pNgauE549ijRP-gk5FNnYmA8Of9kpsSZaVJOoT4PpaVBRj--cPRrbJ-dg8c-_CfBt_76BFhMPtY0P2KESWyDaxTj-0_mzwcpJa25klEcNsS2AgSICA5TAKn6MlI7n7ecEI7NCID20C8ahTZpkjOJDkkA3-xM0Yk79DGKGZxLcXA-1cuxupKrUqegWyN-xiGV6IdrA9JrZjS6jOK01hQRx0mu9uir5pu3E0PiQdnJcQj-d4VDiLOP4Xigi4rtxyEhIhoVzace2Se0qtrMSaKTS9cP22nib4fA1jd4EVf5nJgk=w437-h944-no)
 
-**1. Enter the IP, the username and the password for your user account choose noting for "Input".
+**1. Enter the IP, the username and the password for your user account choose nothing for "Input".
 2. Enter the command you can see in the picture and adjust the path according to the location you have chosen for the "nfc-handoff" folder at the beginning - DO NOT change the file airplay.txt, only adjust the folder location!**
 
 **Example: You installed the folder under /opt/nfc-handoff/ so you have to change the path to /opt/nfc-handoff/airplay.txt**
@@ -107,6 +116,8 @@ Just copy that part of the config
 **After that you add the two actions you can see in the picture. For the second action you have to choose your Server as device for AirPlay (Second Picture)**
 
 ![enter image description here](https://lh3.googleusercontent.com/Erahui3lTu6tgQ19n9Ktt5YL4xWp8S8gZlXIv0FWDOtwrCDvuph5Vpu-cH36m_jcivzmU8vSk9JrKvVEmcbDdfZrzomUmMrZ_bqgWU_YczbyiQZQYrVCyBr5KIYxaTnTf84iytRngSX5-U4FrF6fFBpunxoJIbTAcWkoCCU525JHL0pP6uOhXqJ5IUaEw4kGeBNEmyIbTU9KEpaB2Ea0_bmaDt5nHvm_AgY_Rngug3QYQ498eUmElCNNGSYGHDZNx-17_lwntGUzJWiQW5_eosPUEcP4oGZD933-fQVCbG5YKjenOns77hI0zk8tGSjJ52xJW5zLyrNhmLRe9cGqiNjeVYFithzH6ay_-ZgNNaew_bzkxKO-IqB7zFDTxtpj908TFV9yt2wothcKpAtIzeBXRG44u5xgv25LTOAw2SfNAw9Ug4NsJoqkXjDbBXt2UVvKEqsoRx5YPT1tLH7ol_szzNvIDkqA-htCngdnSxAtfKknwDMD3rfp--6Ys_qLqSK9kCsBuuQl5RMnbLfjnQVv16YFMJo8wHh7ngBRNTidVmzGFrWFMd1ef0NQ_9NrkOkGi_6oM31axFo0t7dwJZ_Ns6JGLX8b0RMewDlpJ00UaB_RNjbB0TRKnCZ79GCJjZv8CRpXjh_mhzeJtguJ-eKJwUFMEcCy5PgUn6yYLSioEasQ42jyXQJmfMlzpjKGvI8c6VBS0FwK7apdlPX4mhWpm_jZaP7Eacqp8su3c7d59xM=w437-h944-no)
+
+
 **Then you add "Wait" for 2 seconds and another SSH script
 Here you again have to adjust the path to the folder but DO NOT modify the start.sh file**
 
