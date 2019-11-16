@@ -23,9 +23,119 @@ I will share multiple versions of this script depending on which Streaming-Provi
 
 **As a result there are two different use cases:**
 
- - **Method 1**: You want to use Apple Music on your iOS device e and transfer that music to your Echo which is running Spotify
- - **Method 2**: You want to use Spotify on your iOS device and transfer that music to your Echo which is also running Spotify
-## Method 1: Apple Music → Amazon Echo
+ - **Method 1**: You want to use Spotify on your iOS device and transfer that music to your Echo which is also running Spotify
+ - **Method 2**: You want to use Apple Music on your iOS device e and transfer that music to your Echo which is running Spotify
+
+
+## Method 1: Spotify → Amazon Echo
+
+ - [Download](https://github.com/EvilShark25/NFCHandoff/archive/master.zip) this repository and navigate to the "Spotify" folder.
+ - Upload the "nfc-handoff" folder to your Linux Server and note down the location
+
+**I.  Install Python and the required libaries:**
+
+    # sudo apt install python python-pip
+    # pip install spotipy
+    # pip install git+https://github.com/plamere/spotipy.git --upgrade
+
+**II. We will now proceed in the [Shortcuts App](https://apps.apple.com/de/app/shortcuts/id915249334?l=en) on our iOS-Device:**
+
+![enter image description here](https://lh3.googleusercontent.com/4zd6GpqONkC2CIocQjtBiMZTb-M65tnS3V0cCUcOwCsRev5bpIJ4jv10Rtr0N1oIe1z24mIpRX7B79mODCmH-7-T6F_xLVH18TQt5ycoQ6yor-zDZOy0ZwGQmk5fvRjYJz3hSjdRu4aBRf4xRfielM2aZnSA2_1izTva20EWUfurGuhhc77ia78hT0uRXF0aDB-oU6w75pf_XBFKa0he4pwd8sIF4WcY19n0GA4n_o-Gl9KY9N7mhruubZQlgohg9C6wxX8v9a84Sl1V_95AQYn2PFAMYbOKTEhJIB-RBuCoIosL4BNhMALh-HG2RV67nMjwToXJdrKOdQ1JYVgLkQfcbOW4ySwJ9Qr_XCl4SllqC0upCt637gbUSbGA85rVAOaufvXPnPCyv76JTVNWu5BV4ONSJVRyCgEOKOwsIYNRcPyBmh1nXJRQhQecvjkNTd86wx5TFxoJJyYqpyanUfYsf3jP7nZ1mrypsGjtkwvDrBbaG_999s3ApYcITtEUumf8L63892HL02qYglBQnzqKDfTTq7CKMxeiFDmkq2J104O6QFBMmqWKRAnntLW2xLrOr-hZ49XZJnknlV9KxNiznfVr2ZBXMol4_Kpk7PWm6wWblcunBG4xMGVwyhUwrDFdkf2Stvdt8u2TmzMR_aV-sN8_Fl-BHPBXLVUpkeG2fVjelW_h7sHQFzy5qk-kr6G9hSuxvOtRQhj5zUOruLY2X17FBEtdKmeuQFhWhXogezI=w437-h944-no)
+
+**First open the App and create a new Shortcut** 
+
+![enter image description here](https://lh3.googleusercontent.com/Sjkuct_1WJSYIHBtZZzDhsLNuNLk-j55G9kWKb6psNHrth-FWr9ZAFOYrRsRkbsoQaxuJ2nCGMbvIh_EEpRtBSr5Bdci6ZWo8-ln7N3Qww8ZgKfEPuW84LMHEvCR8d518sSL3W3iH_LYTN79EtyUqJbC1HgzM8gscRAkVhTfP1IqoHSgmDlmRyvn9CEcBS1MNdm5K22CF6SF7tEG7dE1j-FposQGCZ_-C6Jds7crtJ6qRVRj0c_xoVMvLp99PZortgsyXLSwFfJmz1TlTpq7zUt705hcQd16CuhyzWa3Q9exqjcT0Wi7vC0Ojwt68e0AoQGD4UqZzEaHMl6zSUFjcZM-uOvwmBMbXdCSg5gGaQNnXgb9ShtsD69pDl7n_QiQz-b8egSzyIagTUN6zV7A8OW-7WpxjNFxwtNA0HoRsDebISo2cXIgZjNgm0iPelFgZWLWwj_JVz6XElDhjdDe05Ck5uY2T9bsgAdJnZXAIMrIT1bV0LLw0aCf7NL_jgSSHYRBFabEAw2kILs56l-CTVReiDPS5veaPpICTWUrkoAkygxrBVdGo4Buu2rFUJTZJDmzTsMIFJLSpJ4xelA5cbkNLg76n6pb8GaeWxJrfNdnVLCZKPxjYvRW3aCX5ZKS3EUJAvpLJqxHfhq4FKrK3NF-iI_gp8pIT2t_nSXOyx2k76vac6bsRpMzPXCLKTw8cY9Y44beJc-PviIE2nhCh_eFxm2Qljh0E5pAcUUDg1zOJyk=w437-h944-no)
+
+**Click "Add Action"**
+
+![enter image description here](https://lh3.googleusercontent.com/KLyEuFbVXGjBF03RYtGvRP8Og4DcX1vAwIRpt-WdJGCYE79Ot1cPqEhH3vT16SwZU4T7sK5arQ1k8AS3A8QFJco2E1xUaSZoK9bogLNWk74lwJKekzMUvH-jzZrUm1tieelFTE4NZw5zwHj9gDk2X5ypibnqNZN_Ocvfq9O5G8GxEjwQSaSxdLoJzex9mbguq4FnaxRsCBNyuay7WghdwVKeKirr_szra7Z0HXXd0TXRsSPd59EDIGKmDtvsMQXMZjkKaJPPHGiB2t2qQy0kE7Zf5JvcgKvst2qsLcUf4RkK_rDMwyTWiDVVzJ8v9g6ZBE8HmHJviL6z9VF7wAX6EMHfG9gsDzq_3P0VGNRT-vL5ZNCgnfN8DAHHpLe9Ua6_4viZnw7SKxnChyWlB4T__vFKfbjJXQ84uBfJzcfqzuKoYMm17KyfeYFPgWM81H3k3wa_6HMkrCAZcgPv55kvEVr6zGfkqod_c23o783NWZ0cVIbUIRBMmDt3dmP4tpZK23yEAdlneGKw9j5w6nfS_oGOn6r2Wj0BTg-iRbR4Z1nVvv1RR-Lsisi7B0wwM0speW_JZejzVVRoCDr-ic36Xz0SLU8nuEgfJc8tC4oGb7bsbZSv142590WCl2GmDXVc4ZjTQRg6dAyJ9udOlwycI_JY0oiQlfa7yKZYTllU1GzfC_7PYaJU-75CyicICslPHKQ5Mn-T3pGeLk3s08baKZn7dv6f7lWeGVgPmG3d2R873WU=w437-h944-no)
+
+**Search for SSH and add the shown action**
+
+![enter image description here](https://lh3.googleusercontent.com/GlA94xq5lnxwGNGK7cY-o8om8xF7qh6_gs4DFmDmQCxFwt_EcyAp0qGHAZ_3MJa_9LQUIY03AQYbfUS39wVq2N_r2Zi7IK7izmSoyzzQ4sW0G1jxrl3Uhja2OYJuPswlHzePNwB68VKpZn3G2WutNQH2NroCIDbMLmd-AzFJNqUtg1YEowgRhuy4L2GWfgI83zZ9V3iN2vvgpwLfmHhbFoAxnDcCxdFHrKfG_x99k_UtgTfgGeWxCC0Dl4PawYKHKt_qE_GtxgXl6fe5PgjxXsf-61LFa-Oh8cnw8BWEU-fwBwiSJ8VCsnN3hn7eTfLgw48x_NngpsuuTj7NJ45urlmyEMMTsdKwsAlLHzU2G_mbRR7GyH1_UyFTFnMLThaQPLYsqTc468j71BrcKdcymcQ7gj0uG-jOuuRjVueV-T0S9VYpnPASF_lcx8zq8fnNsK8EkTm1SOzYXGA6To_M1dRpTXwui1iQ3VFldsICMfKW-O0H_1J4PIge4O2yK_Fv9wP0KFioMQUNTF3rF2sYAEU10NNWcx8iMZIMqzyBYIdPrbUj0GxfvUKYWduFegsnA7RvMtQwfGk0bM74X_sTvHfz_dVOSPFh8l3zZnxfN27Pj4siEWJv4f51PPkZKYAiyTddSTh4y-XIBSem4ajn6eWLSs_wOpK3wu3934eloV1WnsWVSOXSTQ=w437-h944-no)
+
+
+**1. Enter the IP, the username and the password for your user account choose nothing for "Input".
+2. Enter the command you can see in the picture and adjust the path according to the location you have chosen for the "nfc-handoff" folder at the beginning - DO NOT change the file start.sh, only adjust the folder location!**
+
+**Example: You installed the folder under /opt/nfc-handoff/ so you have to adjust the command to "cd /opt/nfc-handoff/ && bash start.sh"**
+
+**After that you can save your Shorcut**
+
+**IV. After we created the shortcut on our device we start configuring the script:**
+
+ - Navigate to your "nfc-handoff" folder and open config.txt with any text editor
+ - There you will find the following settings:
+		 - ClientID: ID of your Spotify Developer App (see below)
+		 - ClientSecret: Secret of your Spotify App (see below)
+		 - Username: Your Spotify Username
+		 - Country: Your two-letter country-code e.g. DE for Germany
+		 - Device: Not important for now, we will configure that later on
+
+ To obtain the username of your Spotify Account open your [Account Page](https://www.spotify.com/de/account/overview/)
+
+**How to create an Spotify Developer App:**
+
+ - Open the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/login) and login to your normal Spotify Account
+
+	![enter image description here](https://lh3.googleusercontent.com/pIwbLEp_ooZzjklnE8c8nDbXwRqgkt3OtqBgZgxKvlIQfrj8NItSqH8MQWL2c2oAAGLwfYt98Qygn3J1AviOdUfLL65vOB0ncrI6Fb1Z1ETgj_TGtCXh4i9YbZipq4GiUVgkVWdsQFkOWwz3gkblvCKtSUe3gYfhBzwcqq0wTa5wxg93kIA6ZTW6_kN790gVelufZUn3-OOqn_gQk2Ww8NEtTt-E8YqQ6iQoNQcdhqKAtDwWWZLJsGyWSuadOvPA2dD1xVdNidBfi-K3ftFJpe9Y3fWkoolrq1GLYMpzbuKkVe6FjHTfCp0Rml0LbQH7MrTb0nUYKwofmBdzqnbx-QbqE4q1raD5Hmj1FpYlSJ-MR_B3SFhB2hVaF30gA17qmGICLbMRlITwjQqlgkqLJ4PHSZW92Vn95Tod_kLM1n6_zbcOSG6r9DoB3My66jYwGszdUCP4yUHsbyR2-swLFAtX_Y8_8HU3bz0XQwMrayRyJlf57Q2TOPRl8cFEQCnJy547xSVAfcocy1BavpfJ6PWESDFS6hv0zq2M5_aVpIh0ZiMUXa1-qdvCuJ89yuQveGAL-5nWVFomT273IBr_1YnXZJuS-3q0C-6UPJVZmhRSVWQPAXSATdWpZqG5J1LVXM01d939xKUN_VqC2y6U66cWL4ireI3CLgurfYoVVC-YHSJdp_8Kl4Pd29caaUm91xt2HnXDXaCzGAsUzzpqChygtsvhT5X-tN3lfJKB6Ai9XM0=w1560-h764-no)
+
+ - Create a new app 
+
+	![enter image description here](https://lh3.googleusercontent.com/ViH3GJ_-yweLglsW_1Gq7mO-DBSqFmoKQJXI0ywzEhcrteGCury0CMvUlw25rPPP8sPsffx5cym7D4TR_U5fXb90uJdxWTwdhOUU3az6wp-bQWkDGV1sed_ypalkuycdzbUYcsRD8rw1AMo2FRxgUe8harrKVNXt4EcR3IG0gtmGKrdS_oImqHlzOaJn8hAUbzPxDZbvjq2yIaa79rJoZXo4-baxuc0u5VryiJfybafQbHeFw7TTNxq-DPLWSgSF1rGQ4QOqGw84mnYU7q3bIZvzz2j8BoFPOhELdWY1g_UW6xJb5vBsCdM-zIvjw92RvoLdyAU6fyPhArCagKkx-6s5Bnb0Au2s4ylUIgGO7lumHRcujZkVKRjE8tuwXACmzf8ZKqI563p4Ut0Ful8tABDNJWp7bIMOdubQLgQfGzT6YeBsjXT7GHHZHGM3D8RwHwZ3GvjROwtH9-YKKf_19dnUZvofkz0Ifv3CrNvjT3Nm_9WQup5aYH0EwEyBnu0SMegmDAG0DIuoPmAqxP5QBorZsFqpQVHgNOiZXjFCg6aUNvIHO8B4tUV38lQ0Hag7Z5K1dwz7J6An6EHVUuH5rUIp_mLPmBzenkLQjXIl1ee-lR_aIHed9tMruKb5QLi6D1P4kvNMp3RekuZGcu7ublGQlMli75mZgpEPxTJE4zwAAexG_rFdaACO59Bs0NrfrA5vUp-Hz7tBfDbykD95wqEb5vs0cZu47qBf0AWm6lWT-Js=w498-h819-no)
+
+ - Enter a name and a description, select a project type and click next
+ - After that you will be asked if your App is intended for commercial use, just click no, check the three boxes on the next page and click submit.
+ 
+	 ![enter image description here](https://lh3.googleusercontent.com/k1YTFEpVAPilpVddFaebg-06KsIvvNjZ_TjTmG_0xvDpISqs9M3FuJGLzIlMcTU3SMOXMz0ewfmkRhAMkmJeUr1crqOnPfyKAi5tu3gXY_-MgUGtNktDhg3zE2BuWjEuZ6z9eewjef6MHzQ23UDjnBrAxvNDq432lxEveNo1sftBlxrVg5qHav-EPTWhhKMliN5OlP9guy6L8E9Oao3Mpkr5xbvRAQf0qET37q-RTU6iqbvfFUWcYrTQrT00GpnSEWDp4vB4Ajxc8lE_FWBA4cOyctjfVpQyDLZVUhmj8BPfJ2jpjkNOSuySGg4xMuGizEzWGzF1qYRnVI0Ae3rTHV_cex7nxqdPb-4D7EUNIkHJ85HDxFvHe4NNabgzxjZ3LOxe8zOPsyDPfEf1JSNMb3ItbOvYDyaxRWIh_jw51SMhJXvYgH_M3sPiH0ez5OlsfdCcvhSYBa9ljlBpK2yDLnQ7u8lDXPfqc1nCJeqSfSTxB2p41eBlYVPMTdny5zRLQ5xUZ40OdE4rvyrIejIwq_sm4WCkX6jY5u1SyU2KPMLz2nNG534sks_YJqQogfP3bSR5aPcfzKjbdKTHyuuuA6GcJ3k6rYpsgllyrYHaPzXJwqDnmd68U2wQ-8IN6Tte72F60b5LzRso6co-a91_raA5N95pkSgyDG6UiMI1DBZBxH9aNZqSHkLeddxJIfGBIvgnHzJH9vwqhcUBxar4vHporgY1UBpSwCwXzCcMzi0drnc=w1560-h650-no)
+
+ - You can find your ID and Secret on the App´s page
+ - Click edit settings and add `http://localhost/` to the Redirect URLs and save:
+ 
+ ![enter image description here](https://lh3.googleusercontent.com/j2c_TpGgBzlOSwsY4Z0K5TlQ5Vx8bvtK-p3AjacXvJ_AFbJy6YcAZH09l60BhyQbxPQfSAhSTyYs4gcGDz5MFrL3AR51ZAG2K2XdnAa2pYpzDsuM44WCLmtJ16CrKrGMYcJTGMV_0RryIAnoS3VbNZgf6feRhFdStbx8m3wL9SNtlGBPxu8attwAaMc9Iw75-I9SJyyiKGqOlkm8i-0n2WLt8wwFNMsoltCxao9e3Naz9MIxdETrMGRCVVjbjDX0tBYs7Snma7zhN8tO3jjB2Pe6CaLD7JMQ0CbhQsqhMZdln74DHS-8PxPkhnB4cVYOpCDQxqR2E9MsetizI-Fv-hsGVRfDs92gd3a3FJt4XkZtj4A-Kn11q9F8FviCBxnLzxtHSVjmZCpmYAxuDZNwA2yJ1FFIpFqCMhuDgVIAbrnML9rUo_LE-DrILbNRl4izKbl1w4duFLJRUB4N2HHIngRXPmUIAuLdPglZcuotVKbzJOT2FF0lbO_ixXT6M44Y29Us4CgH5GK11kmXlBAg0_z--kiHyswnk6MmDECWAMje-cMfmj2MAgLRvIq7PbDnO6zxBqyu4aAJru3pdB-ZdTq2oOSbnb3F1_6wbHLFX3VSe7GAvLr-iLg81PiulczAe0eMxxoNu1wNVIAzKYgwAhbSCwqMwHmOaB3ex3dRLG7N7Ujedi-B1Q=w526-h937-no)
+
+**Now you can fill in your data like that:**
+	
+	
+![enter image description here](https://lh3.googleusercontent.com/839i4UVwhf4-rpZz0KGYCY3j6eNX8E7nQYGZKwMZO5WvvT_G4MngH24WPKx7aqawtw7_fADGWermBNLDv3dDQkfLIDBaLOiweDvCLi4RHy9IJuv9Pe0xbVwnq_lIG-l_ha_TRnfl8q-73MchM7hWdC286GVprDsgYKlESW3yIRUnaI4oXc8BLNd1exdrrsrkuUpnrYC9W2oXxYPzPdPqJ0LtAq2E1goTaGqRaP5Bz1uAZ9hKAimMuIElz7YSHjzDCr5YD1_SDLuMgwpcNxzJUabdGAO2wlJYbMC9GkpK3aKj_N_1FF-1FRvdj1-oFb3Dc1lUMD1OSS9eaIpQsthE680AhG3Yej6DPwJfDVxTwwhSCUqov_v16fbB6V7pDAygW6S8BRe5qEUqsc2q4Vnuj6ckTdeLIgeCutt1Evss0GD0aYR_T0d98Z9OM5nlrKuHPx4Kn7b-plaYkXev0pzQpcI-biYFyMwQ7Rc5zVQPODKJva9zzz5GtF7xN27NgI03J36obaxzDR_SNoHrme1AyUxV48wJ5ObGjg7IF9_XccL-oB54UBWs4Kk6Px558ZwxIU8u-Ok55QWALmbhwbyOHqRzcHNSYBFwIEYMF2W0rfwkTErvJ0X0gnl7DHClETutUi9PfFQwZ0GoK3WF2CL980_9INlchsubHg3l5DKBODPDmvcReKdXgde8Nb32KnmkNKTEa2k07yv6lVFOWkvMIxk3ymiqd-qVWmWeMCcTjxadaM0=w396-h81-no)
+
+**V. Initialisation:**
+
+ - Execute `bash getKey.sh`
+ - If you filled in the config correctly the script will show a URL starting with "`https://accounts.spotify.com/authorize?scope=..."`
+ - You have to copy that URL and open it in your browser
+ - Enter your Spotify E-Mail and Password to authorize the Application
+ - After that Spotify will redirect you to `"http://localhost/?code=..."`
+ You will get an error because localhost is not the valid domain of our server, just copy the link paste it into the terminal running the `getKey.sh` script and hit enter
+ 
+
+ - After that you will get back to the command line and a new file named `".cache-..."` will get created
+ That file contains the so called Authorization code for the user you logged in with
+
+**VI. Get your DeviceID:**
+
+- Execute the following command: `# python getDevices.py`
+- The script will output a json object that contains the devices that are connected to the user you selected in the config.txt
+- You have to look for the name of your Amazon Echo to get its id
+- Add the obtained ID in config.txt under `Device: ""`
+
+Example:
+The name of my Echo Dot is "Davids Echo Dot"
+After I executed the command I got the following output:
+
+    {u'devices': [{u'name': u'Davids Echo Dot', u'volume_percent': 36, u'is_private_session': False, u'is_active': False, u'is_restricted': False, u'type': u'Speaker', u'id': u'27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213'}
+
+ You can see the name of the device, its volume level and much more but you just need the ID.
+ The ID in this case would be: `27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213`.
+
+
+**VII. Finalization:**
+
+Now you should be able to "handoff" your music to your Amazon Echo by simply starting the shortcut on your phone. Try it by playing a song from Spotify and starting the shortcut in the meantime. The music should pause on your phone and continue to play on your Amazon Echo at the same position. If you encounter any errors review the Troubleshooting and Known Bugs section down below before opening an issue. 
+
+
+
+## Method 2: Apple Music → Amazon Echo
 
  - [Download](https://github.com/EvilShark25/NFCHandoff/archive/master.zip) this repository and navigate to the "Apple Music" folder.
  - Upload the "nfc-handoff" folder to your Linux Server and note down the location
@@ -90,7 +200,7 @@ Just copy that part of the config
 
 **Search for SSH and add the shown action**
 
-![enter image description here](https://lh3.googleusercontent.com/CrfiFBQa38fu4jiRDCzBy0oxsWkyrcx0GbZA7UL0zh-dmzfiVT6E7DpNj6tnowur0IzLw99vjGzBZl8GtTJeiZ6P4lepN42TzrF0Zm95JBGNUFD_6T4Af1deQWWJTUk3n9r7r373keN6Cv73vfg7URg827Y3jpcEinww0isQg5uoEYzmwtFPLQ4OJsJCeFVVloLNyXlSexsirsrgKKCQzJYQzHDH7kdr2uWSMuc-fLKcShhve95GAwagxfv27no7gwHuuUuIhtV-RJfYbAkhuh-kO4A6kNijhWPOKjczVf2-kAimOu-wT_lehKkz9IBlovlJZC1NnApo6PSdunAA2cM4fCx3Td3aIsimZMcZWji-HbC4oCzPltW_-78kvmEQ6kHKGVl5htdSK-B1Qi47dpqW0F7EQXDovTtcibRZYWbufxkDAlQfXoIgzktSTaQ4mU51Mq7oI8w689q_FR3f_5wf3LqrNTLfi7IvTwM97xWhEjg-_sC3D4VvK1w8HSR6lhImuR9uoYAZRNTnww7YUAT1y6FUsu6Iv2LEJtt8qlWt9IXZEVkkqsNZSI4smvLOlCknWIPZFdzFJz-sC24fVXO_2DR9ngMt5cftFE_EdUiK4rAra5FWrJDCMRaBthE9-eytiBbv2DT-zCinO3T4GBZKInPAkoNA2ZCuGSXGc2uovscF8hbBijegly7iba39e3Z0Tr1L9xSoI2sN649IHbLPs7SEdhGL6eJJZigCbTvu7YQ=w518-h695-no)
+![enter image description here](https://lh3.googleusercontent.com/17meYIA5u8-o58YjQn5MK1NY08EIQz9FIH8xQjPwEVIy5klY7g1-BidxkvlugFlgb_BThzEiTafDm9i_1WAfsaGWxWpStNnnEYd1WROarbEwjIjyXsGxKlUoHXJXIyn08qiJQ2huLKI4NHK2qHa2Plsb9oPA91NGIyRNjWEVG1glLxr34N3O3UG0_Uxmavp7NkUhYpKz2mvf3vT-eyU1Z3x8I2p7oAn2u2OLloRNDBdOuYw7qnHU0GTE9QTJ0P0tl15nyOk2r9V3SsbCS7j_V72-PXCgBGvXXxwU1rYEYc7f6lFb6N_0axnd0b6Ae_NEAgUxCq5ikVjSS8FR_P010zQ__ZM6aMtMEMuhyqAk0E8enoMP8HoGfU4_j5c2dQs_E9UQXa2I52FuDk0fdJHjEX-6XfslCPlBoEkhD5xLSjEcbuLhi_ONFdmjFU0T_F_svaR19ivNJIAM69sYb4XFy8_H7djedilHMMfUdrMWent6i-6PYk8gtEOqiStervCuAQ-ZeE96HFK2h-uUBotw1uZ503qjDLh3UI8gVwz4pElZVQ-6wVRdoCgY78RQhn2Lwb-0gsvtSSdAM2G6E9iNC1-Dv7t-ip6D2Jma6FiVckKYOxhKPJRxwaBtB_VcheJCquJxC3LJiONcqABwV1knQgmBg0hr7p7VG_330HUHCciMakVMOjZlow=w437-h944-no)
 
 
 **1. Enter the IP, the username and the password for your user account choose nothing for "Input".
@@ -224,6 +334,7 @@ Part 3 controls the final playback on the Amazon Echo. It uses the WEB-API of Sp
  - Try restarting your server
 
 If the problem still persists feel free to open an issue containing your error.
+
 
 # Implementation of NFC
 To get started with NFC you will need the following things:
