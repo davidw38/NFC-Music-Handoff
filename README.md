@@ -29,7 +29,7 @@ I will share multiple versions of this script depending on which Streaming-Provi
 
 ## Method 1: Spotify → Amazon Echo
 
- - [Download](https://github.com/davidw38/NFC-Music-Handoff/archive/1.0.zip) this repository and navigate to the "Spotify" folder.
+ - [Download](https://github.com/davidw38/NFC-Music-Handoff/archive/2.0.zip) this repository and navigate to the "Spotify" folder.
  - Upload the "nfc-handoff" folder to your Linux Server and note down the location
 
 **I.  Install Python and the required libaries:**
@@ -137,7 +137,7 @@ Now you should be able to "handoff" your music to your Amazon Echo by simply sta
 
 ## Method 2: Apple Music → Amazon Echo
 
- - [Download](https://github.com/davidw38/NFC-Music-Handoff/archive/1.0.zip) this repository and navigate to the "Apple Music" folder.
+ - [Download](https://github.com/davidw38/NFC-Music-Handoff/archive/2.0.zip) this repository and navigate to the "Apple Music" folder.
  - Upload the "nfc-handoff" folder to your Linux Server and note down the location
  
  
