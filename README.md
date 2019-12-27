@@ -34,7 +34,7 @@ I will share multiple versions of this script depending on which Streaming-Provi
 
 **I.  Install Python and the required libaries:**
 
-    # sudo apt install python python-pip
+    # sudo apt install python3.7 python3-pip
     # pip install spotipy
     # pip install git+https://github.com/plamere/spotipy.git --upgrade
 
@@ -116,8 +116,7 @@ I will share multiple versions of this script depending on which Streaming-Provi
 
 - Execute the following command: `# python getDevices.py`
 - The script will output a json object that contains the devices that are connected to the user you selected in the config.txt
-- You have to look for the name of your Amazon Echo to get its id
-- Add the obtained ID in config.txt under `Device: ""`
+- You should be able to find the name of your Echo pretty easily
 
 Example:
 The name of my Echo Dot is "Davids Echo Dot"
@@ -125,9 +124,10 @@ After I executed the command I got the following output:
 
     {u'devices': [{u'name': u'Davids Echo Dot', u'volume_percent': 36, u'is_private_session': False, u'is_active': False, u'is_restricted': False, u'type': u'Speaker', u'id': u'27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213'}
 
- You can see the name of the device, its volume level and much more but you just need the ID.
+ You can see the name of the device, its volume level and its ID.
  The ID in this case would be: `27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213`.
-
+ 
+Just enter the exact name of the device in the config.txt
 
 **VII. Finalization:**
 
@@ -182,7 +182,7 @@ Just copy that part of the config
     # sudo systemctl start shairport-sync
 **III. Now we install Python and the required libaries:**
 
-    # sudo apt install python python-pip
+    # sudo apt install python3.7 python3-pip
     # pip install spotipy
     # pip install git+https://github.com/plamere/spotipy.git --upgrade
 
@@ -290,8 +290,7 @@ Here you again have to adjust the path to the folder but DO NOT modify the start
 
 - Execute the following command: `# python getDevices.py`
 - The script will output a json object that contains the devices that are connected to the user you selected in the config.txt
-- You have to look for the name of your Amazon Echo to get its id
-- Add the obtained ID in config.txt under `Device: ""`
+- You should be able to find the name of your Echo pretty easily
 
 Example:
 The name of my Echo Dot is "Davids Echo Dot"
@@ -299,8 +298,10 @@ After I executed the command I got the following output:
 
     {u'devices': [{u'name': u'Davids Echo Dot', u'volume_percent': 36, u'is_private_session': False, u'is_active': False, u'is_restricted': False, u'type': u'Speaker', u'id': u'27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213'}
 
- You can see the name of the device, its volume level and much more but you just need the ID.
+ You can see the name of the device, its volume level and its ID.
  The ID in this case would be: `27aXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX7213`.
+ 
+Just enter the exact name of the device in the config.txt
 
 
 **VIII. Finalization:**
