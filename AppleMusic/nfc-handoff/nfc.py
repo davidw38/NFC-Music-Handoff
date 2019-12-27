@@ -1,6 +1,7 @@
 import spotipy.util
 import traceback
 import os
+import json
 
 if os.path.exists("dry-run"):
 
@@ -68,7 +69,7 @@ else:
                 username = memoryline.rstrip(os.linesep)[11:][:-1]
             elif deviceformat in line:
                 memoryline = line
-                device = memoryline.rstrip(os.linesep)[9:][:-1]
+                devicename = memoryline.rstrip(os.linesep)[9:][:-1]
             elif countryformat in line:
                 memoryline = line
                 country = memoryline.rstrip(os.linesep)[10:][:-1]
@@ -94,6 +95,8 @@ else:
     timecodeline3 = timecodeline2[:-3]
 
     timecodes = timecodeline3.split("/")
+
+
 
     try:
         starter = int(timecodes[0])
@@ -149,6 +152,23 @@ else:
         raise Exception("No Songs have been found! Check log.txt!")
 
     try:
+        devices = str(spotify.devices()).replace("'", '"').replace("False", "false").replace("True", "true")
+        data = json.loads(devices)["devices"]
+        len = len(data) - 1
+        i = 0
+
+        while i <= len:
+            data1 = data[i]
+            i += 1
+            if devicename == str(data1["name"]):
+                device = data1["id"]
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("The device has not been found! Check log.txt!")
+
+    try:
         spotify.start_playback(device, None, [song], None)
     except:
         exe = traceback.format_exc()
@@ -167,5 +187,3 @@ else:
 
     os.remove(path[:-6] + "airplay.txt")
     os.remove(path[:-6] + "airplay2.txt")
-
-    
