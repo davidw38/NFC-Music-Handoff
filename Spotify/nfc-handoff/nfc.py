@@ -1,6 +1,7 @@
 import spotipy.util
 import os
 import traceback
+import json
 
 if os.path.exists("dry-run"):
 
@@ -61,11 +62,35 @@ else:
                 country = memoryline.rstrip(os.linesep)[10:][:-1]
             elif deviceformat in line:
                 memoryline = line
-                device = memoryline.rstrip(os.linesep)[9:][:-1]
+                devicename = memoryline.rstrip(os.linesep)[9:][:-1]
 
     try:
         token = spotipy.util.prompt_for_user_token(username, scopes, id, secret, url)
         spotify = spotipy.Spotify(auth=token)
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("The was a problem with the Spotify-API! Check error.txt!")
+
+    try:
+        devices = str(spotify.devices()).replace("'", '"').replace("False", "false").replace("True", "true")
+        data = json.loads(devices)["devices"]
+        len = len(data) - 1
+        i = 0
+
+        while i <= len:
+            data1 = data[i]
+            i += 1
+            if devicename == str(data1["name"]):
+                device = data1["id"]
+    except:
+        exe = traceback.format_exc()
+        with open(path[:-6] + 'error.txt', 'w') as file:
+            file.write(exe)
+        raise Exception("The device has not been found! Check log.txt!")
+
+    try:
         spotify.transfer_playback(device, True)
     except:
         exe = traceback.format_exc()
