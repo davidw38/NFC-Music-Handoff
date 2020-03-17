@@ -54,7 +54,7 @@ else:
     scopes = "user-read-currently-playing user-modify-playback-state user-read-playback-state streaming app-remote-control"
     url = "http://localhost/"
 
-    i = 3
+    i = 1
 
     with open(path[:-6] + 'config.txt', 'r') as file:
         for line in file:
@@ -108,8 +108,8 @@ else:
             file.write(exe)
         raise Exception("There is a problem dealing with the timecodes! Try restarting shairport!")
 
-    curr = round((mid - starter) / 44100)
-    dur = round((end - starter) / 44100)
+    curr = round(((mid - starter) / 44100) * 1000)
+    dur = round(((end - starter) / 44100) * 1000)
 
     if "feat." in songname:
         songname = songname.split("(")[0][:-1]
@@ -177,7 +177,7 @@ else:
         raise Exception("The device has not been found! Check log.txt!")
 
     try:
-        spotify.seek_track(int(curr) * 1000, device)
+        spotify.seek_track(int(curr), device)
     except:
         exe = traceback.format_exc()
         with open(path[:-6] + 'error.txt', 'w') as file:
