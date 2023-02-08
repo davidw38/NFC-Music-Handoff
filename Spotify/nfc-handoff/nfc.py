@@ -74,7 +74,7 @@ else:
         raise Exception("The was a problem with the Spotify-API! Check error.txt!")
 
     try:
-        devices = str(spotify.devices()).replace("'", '"').replace("False", "false").replace("True", "true")
+        devices = str(spotify.devices()).replace("'s", "s").replace("'", '"').replace("False", "false").replace("True", "true")
         data = json.loads(devices)["devices"]
         len = len(data) - 1
         i = 0
